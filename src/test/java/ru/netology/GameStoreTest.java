@@ -28,6 +28,26 @@ public class GameStoreTest {
     }
 
     @Test
+    public void shouldAddGame3() {
+
+        GameStore store = new GameStore();
+        Game game1 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        Game game2 = store.publishGame("Маша", "Ваня");
+        assertTrue(store.containsGame(game1));
+    }
+
+    @Test
+    public void shouldAddGame4() {
+
+        GameStore store = new GameStore();
+        Game game1 = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        Game game2 = store.publishGame("Маша", "Ваня");
+        Game game3 = store.publishGame("Света", "Таня");
+        Game game4 = store.publishGame("Оля", "Дима");
+        // для теста метода publishGame не хватает геттера
+    }
+
+    @Test
     public void shouldContains() {
 
         //для теста этого метода не хватает геттера
