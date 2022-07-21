@@ -37,7 +37,7 @@ public class PlayerTest {
         player.play(game3, 3);
         player1.play(game1, 2);
 
-        assertThrows(RuntimeException.class, () -> {
+        assertThrows(NotInstalGameException.class, () -> {
             player.play(game3, 3);
 
         });
