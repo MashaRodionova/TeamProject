@@ -13,11 +13,12 @@ public class PlayerTest {
         Player player = new Player("Petya");
         player.installGame(game);
         player.play(game, 3);
-
         int expected = 3;
         int actual = player.sumGenre(game.getGenre());
         assertEquals(expected, actual);
     }
+
+
     @Test
     public void shouildThrowRunTimeException() {
         GameStore store = new GameStore();
