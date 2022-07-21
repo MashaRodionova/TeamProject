@@ -66,6 +66,23 @@ public class Player {
      * Если в игры этого жанра не играли, возвращается null
      */
     public Game mostPlayerByGenre(String genre) {
-        return null;
+        Map<Game, Integer> tmp = new HashMap<>();
+        for (Game game : playedTime.keySet()) {
+            if (game.getGenre().equals(genre)) {
+                tmp.put(game, playedTime.get(game));
+            }
+        }
+        int mostPlayerTime = 0;
+        Game mostGameByGenre = null;
+        if (tmp != null) {
+            for (Game game : tmp.keySet()) {
+
+                if (tmp.get(game) > mostPlayerTime) {
+                    mostPlayerTime = tmp.get(game);
+                    mostGameByGenre = game;
+                }
+            }
+        }
+        return mostGameByGenre;
     }
 }
