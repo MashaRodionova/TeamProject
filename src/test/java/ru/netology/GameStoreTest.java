@@ -35,8 +35,33 @@ public class GameStoreTest {
         assertEquals("Masha", store.getMostPlayer());
     }
 
-        // не хватает геттера для реализации теста
+    @Test
+    public void shouldGetMostPlayer5() {
+        GameStore store = new GameStore();
+        store.addPlayTime("Masha", 0);
+        store.addPlayTime("Sveta", 0);
+        store.addPlayTime("Anya", 1);
+        store.addPlayTime("Nata", 0);
+        store.addPlayTime("Petya", 0);
 
+      assertEquals("Anya", store.getMostPlayer());
+    }
+    @Test
+    public void shouldGetMostPlayer6() {
+        GameStore store = new GameStore();
+        store.addPlayTime("Sveta", 10);
 
+        assertEquals("Sveta", store.getMostPlayer());
+    }
+    @Test
+    public void shouldGetMostPlayer2() {
+        GameStore store = new GameStore();
+        store.addPlayTime("Masha", 0);
+        store.addPlayTime("Sveta", 0);
+        store.addPlayTime("Anya", 0);
+        store.addPlayTime("Nata", 0);
+        store.addPlayTime("Petya", 0);
+        assertEquals(null, store.getMostPlayer());
+    }
     // другие ваши тесты
 }
