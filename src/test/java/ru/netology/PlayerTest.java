@@ -62,23 +62,24 @@ public class PlayerTest {
         });
     }
     @Test
-    public void shouldMostPlayerByGenre() {
+    public void mostPlayerByGenreGamePlayed() {
         GameStore store = new GameStore();
+        Player player = new Player("Ura");
         Game game1 = store.publishGame("Игра1", "Аркады");
         Game game2 = store.publishGame("Игра2", "Стратегии");
         Game game3 = store.publishGame("Игра3", "Аркады");
-
-        Player player = new Player("Вася");
-        Player player1 =new Player("Иван");
         player.installGame(game1);
         player.installGame(game2);
         player.installGame(game3);
-        player.play(game1, 3);
-        player.play(game2, 2);
-        player.play(game3, 1);
 
-        String expected = "Игра1";
-        String actual = player.mostPlayerByGenre("Аркады");
+        player.play(game1, 6);
+        player.play( game2, 5);
+        player.play(game3, 3);
+
+
+        Game expected = game1;
+        Game actual = player.mostPlayerByGenre("Аркады");
+
         assertEquals(expected, actual);
     }
     @Test
@@ -94,8 +95,8 @@ public class PlayerTest {
         player.play(game1, 3);
         player.play(game2, 2);
 
-        String expected = null;
-        String actual = player.mostPlayerByGenre("RPG");
+        Game expected = null;
+        Game actual = player.mostPlayerByGenre("RPG");
         assertEquals(expected, actual);
     }
 
