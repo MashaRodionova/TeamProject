@@ -40,6 +40,7 @@ public class Player {
         game.getStore().addPlayTime(name, hours);
         if (playedTime.containsKey(game)) {
             playedTime.put(game, playedTime.get(game) + hours);
+
         } else {
 
             throw new NotInstalGameException("Игра " + game + " не установлена");
