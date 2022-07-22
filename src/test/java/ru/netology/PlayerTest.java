@@ -19,6 +19,26 @@ public class PlayerTest {
         assertEquals(expected, actual);
     }
     @Test
+    public void shouildSumGenreTwoGames() {
+        GameStore store = new GameStore();
+        Game game1 = store.publishGame("Игра1", "Аркады");
+        Game game2 = store.publishGame("Игра2", "Стратегии");
+        Game game3 = store.publishGame("Игра3", "Аркады");
+
+        Player player = new Player("Вася");
+        player.installGame(game1);
+        player.installGame(game2);
+        player.installGame(game3);
+        player.play(game1, 3);
+        player.play(game2, 2);
+        player.play(game3, 3);
+        player.play(game1, 2);
+
+        int expected = 8;
+        int actual = player.sumGenre("Аркады");
+        assertEquals(expected, actual);
+    }
+    @Test
     public void shouildThrowRunTimeException() {
         GameStore store = new GameStore();
         Game game1 = store.publishGame("Игра1", "Аркады");
@@ -37,7 +57,7 @@ public class PlayerTest {
         player1.play(game1, 2);
 
         assertThrows(RuntimeException.class, () -> {
-            player.play(game3, 3);
+            player.play(game2, 3);
 
         });
     }
@@ -58,8 +78,26 @@ public class PlayerTest {
         player.play(game3, 1);
 
         String expected = "Игра1";
-        Game actual = player.mostPlayerByGenre("Аркады");
+        String actual = player.mostPlayerByGenre("Аркады");
         assertEquals(expected, actual);
     }
+    @Test
+    public void shouldMostPlayerByGenreNoInstall() {
+        GameStore store = new GameStore();
+        Game game1 = store.publishGame("Игра1", "Аркады");
+        Game game2 = store.publishGame("Игра2", "Стратегии");
+        Game game3 = store.publishGame("Игра3", "RPG");
+
+        Player player = new Player("Вася");
+        player.installGame(game1);
+        player.installGame(game2);
+        player.play(game1, 3);
+        player.play(game2, 2);
+
+        String expected = null;
+        String actual = player.mostPlayerByGenre("RPG");
+        assertEquals(expected, actual);
+    }
+
     // другие ваши тесты
 }
