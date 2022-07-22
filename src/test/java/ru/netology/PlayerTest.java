@@ -13,11 +13,12 @@ public class PlayerTest {
         Player player = new Player("Petya");
         player.installGame(game);
         player.play(game, 3);
-
         int expected = 3;
         int actual = player.sumGenre(game.getGenre());
         assertEquals(expected, actual);
     }
+
+
     @Test
     public void shouildSumGenreTwoGames() {
         GameStore store = new GameStore();
@@ -56,7 +57,7 @@ public class PlayerTest {
         player.play(game3, 3);
         player1.play(game1, 2);
 
-        assertThrows(RuntimeException.class, () -> {
+        assertThrows(NotInstalGameException.class, () -> {
             player.play(game3, 3);
 
         });
