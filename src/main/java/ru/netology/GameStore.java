@@ -75,6 +75,11 @@ public class GameStore {
      * за играми этого каталога
      */
     public int getSumPlayedTime() {
-        return 0;
+        int sum = 0;
+        List<Integer> playedHours = new ArrayList<>(playedTime.values());
+        for (Integer hours : playedHours) {
+            sum += hours;
+        }
+        return sum;
     }
 }
