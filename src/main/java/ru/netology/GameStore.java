@@ -7,14 +7,18 @@ import java.util.Map;
 
 public class GameStore {
     private List<Game> games = new ArrayList<>();
-
+    public List<Game> getGames() {
+        return games;
+    }
     /**
      * Информация о том, какой игрок сколько играл в игры этого каталога
      * Ключ - имя игрока
      * Значение - суммарное количество часов в игры этого каталога
      */
     private Map<String, Integer> playedTime = new HashMap<>();
-
+    public Map<String, Integer> getPlayedTime() {
+        return playedTime;
+    }
     /**
      * Создание объекта игры с заданными заголовком и жанром
      * Каждый объект игры помнит объект каталога, которому она принадлежит
@@ -25,13 +29,14 @@ public class GameStore {
         return game;
     }
 
+
     /**
      * Проверяет наличие игры в каталоге и возврашает true
      * если игра есть и false иначе
      */
     public boolean containsGame(Game game) {
-        for (int i = 1; i < games.size(); i++) {
-            if (games.get(i - 1).equals(game)) {
+        for (int i = 0; i < games.size(); i++) {
+            if (games.get(i).equals(game)) {
                 return true;
             }
         }
@@ -45,18 +50,20 @@ public class GameStore {
      */
     public void addPlayTime(String playerName, int hours) {
         if (playedTime.containsKey(playerName)) {
-            playedTime.put(playerName, playedTime.get(playerName));
+            playedTime.put(playerName, playedTime.get(playerName) + hours);
         } else {
             playedTime.put(playerName, hours);
         }
     }
+
+
 
     /**
      * Ищет имя игрока, который играл в игры этого каталога больше всего
      * времени. Если игроков нет, то возвращется null
      */
     public String getMostPlayer() {
-        int mostTime = 1;
+        int mostTime = 0;
         String bestPlayer = null;
         for (String playerName : playedTime.keySet()) {
             int playerTime = playedTime.get(playerName);
@@ -73,6 +80,11 @@ public class GameStore {
      * за играми этого каталога
      */
     public int getSumPlayedTime() {
-        return 0;
+        int sum = 0;
+        List<Integer> playedHours = new ArrayList<>(playedTime.values());
+        for (Integer hours : playedHours) {
+            sum += hours;
+        }
+        return sum;
     }
 }

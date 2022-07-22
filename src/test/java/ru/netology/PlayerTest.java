@@ -13,11 +13,13 @@ public class PlayerTest {
         Player player = new Player("Petya");
         player.installGame(game);
         player.play(game, 3);
-
         int expected = 3;
         int actual = player.sumGenre(game.getGenre());
         assertEquals(expected, actual);
     }
+
+
+
     @Test
     public void shouildSumGenreTwoGames() {
         GameStore store = new GameStore();
@@ -56,7 +58,9 @@ public class PlayerTest {
         player.play(game3, 3);
         player1.play(game1, 2);
 
-        assertThrows(RuntimeException.class, () -> {
+
+        assertThrows(NotInstalGameException.class, () -> {
+
             player.play(game2, 3);
 
         });
@@ -71,11 +75,9 @@ public class PlayerTest {
         player.installGame(game1);
         player.installGame(game2);
         player.installGame(game3);
-
         player.play(game1, 6);
         player.play( game2, 5);
         player.play(game3, 3);
-
 
         Game expected = game1;
         Game actual = player.mostPlayerByGenre("Аркады");
@@ -100,5 +102,4 @@ public class PlayerTest {
         assertEquals(expected, actual);
     }
 
-    // другие ваши тесты
 }
