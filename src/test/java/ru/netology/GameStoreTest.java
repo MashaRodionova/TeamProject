@@ -1,9 +1,9 @@
 package ru.netology;
 
 import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
+
 
 public class GameStoreTest {
 
@@ -166,15 +166,15 @@ public class GameStoreTest {
         Assertions.assertEquals(null, store.getMostPlayer());
     }
 
-@Test
-    public void shouldGetSumPlayedTime(){
-    GameStore store = new GameStore();
-    store.addPlayTime("Masha", 5);
-    store.addPlayTime("Sveta", 7);
-    store.addPlayTime("Anya", 1);
-    store.addPlayTime("Nata", 3);
-    store.addPlayTime("Petya", 4);
+    @Test
+    public void shouldGetSumPlayedTime() {
+        GameStore store = new GameStore();
+        store.addPlayTime("Masha", 5);
+        store.addPlayTime("Sveta", 7);
+        store.addPlayTime("Anya", 1);
+        store.addPlayTime("Nata", 3);
+        store.addPlayTime("Petya", 4);
 
-    Assertions.assertEquals(20, store.getSumPlayedTime());
-}
+        Assertions.assertEquals(20, store.getSumPlayedTime());
+    }
 }
